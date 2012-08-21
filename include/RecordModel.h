@@ -243,6 +243,20 @@ struct RecordModelInstance
     return (keys_in_range_pos(l, r, keypos) == 0);
   }
 
+  /*
+   * Return true if all data fields are within the ranges of the corresponding field in "l" and "r".
+   */
+  bool values_in_range(const RecordModelInstance *l, const RecordModelInstance *r) const
+  {
+    assert(l->model == model && r->model == model);
+
+    for (int i = 0; model->_values[i] != NULL; ++i)
+    {
+      if (model->_values[i]->between(ptr(), l->ptr(), r->ptr()) != 0) return false;
+    }
+    return true;
+  }
+
   void copy_keys(const RecordModelInstance *from, int i)
   {
     assert(from->model == model);

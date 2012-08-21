@@ -1,6 +1,6 @@
 spec = Gem::Specification.new do |s|
   s.name = 'RecordModel'
-  s.version = '0.1'
+  s.version = '0.2'
   s.summary = 'RecordModel'
   s.author = 'Michael Neumann'
   s.license = 'BSD License'

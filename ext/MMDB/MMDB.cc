@@ -517,8 +517,20 @@ private:
 	if (data->copy_values_in)
 	{
           copy_values_in(data->current, cursor);
+
+  	  /*
+  	   * Additionally check if the values are in the range (only if values are copied in).
+	   */
+	  if (!data->current->values_in_range(range_from, range_to))
+	  {
+	    ++cursor;
+	    continue;
+	  }
 	}
-     
+
+	/*
+	 * Call the iterator
+	 */
         int iter = iterator(data);
         if (iter != ITER_CONTINUE)
         {
